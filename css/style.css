@@ -48,3 +48,12 @@ footer {
   font-size: 0.8em;
   color: #666;
 }
+.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.clickable:hover {
+  transform: scale(1.05);
+}
+
