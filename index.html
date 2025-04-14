@@ -1,27 +1,81 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Horaires des Bus</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horaires Bus Temps Réel</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div id="loader" class="loader">
-    <img src="img/logo.png" alt="Chargement...">
+    <img src="img/logo.png" alt="Chargement..."/>
   </div>
+
   <div id="app" class="hidden">
     <header>
-      <img src="img/logo.png" alt="Logo entreprise" class="main-logo">
+      <img src="img/logo.png" alt="Logo" class="main-logo"/>
       <h1>Horaires en temps réel</h1>
     </header>
+
     <main>
-      <section id="ligne1" class="ligne-card"></section>
-      <section id="ligne2" class="ligne-card"></section>
-      <section id="ligne3" class="ligne-card"></section>
-      <section id="ligne4" class="ligne-card"></section>
+      <!-- Ligne 1 -->
+      <section class="ligne-card" id="ligne1">
+        <h2>Ligne 1</h2>
+        <img src="img/ligne1.png" alt="Ligne 1"/>
+        <p>→ Campus Alan Turing : 
+          <span id="ligne1-turing-1">xx min</span> | 
+          <span id="ligne1-turing-2">xx min</span>
+        </p>
+        <p>→ Gare Centrale : 
+          <span id="ligne1-gare-1">xx min</span> | 
+          <span id="ligne1-gare-2">xx min</span>
+        </p>
+      </section>
+
+      <!-- Ligne 2 -->
+      <section class="ligne-card" id="ligne2">
+        <h2>Ligne 2</h2>
+        <img src="img/ligne2.png" alt="Ligne 2"/>
+        <p>→ Aéroport : 
+          <span id="ligne2-aeroport-1">xx min</span> | 
+          <span id="ligne2-aeroport-2">xx min</span>
+        </p>
+        <p>→ Gare Centrale : 
+          <span id="ligne2-gare-1">xx min</span> | 
+          <span id="ligne2-gare-2">xx min</span>
+        </p>
+      </section>
+
+      <!-- Ligne 3 -->
+      <section class="ligne-card" id="ligne3">
+        <h2>Ligne 3</h2>
+        <img src="img/ligne3.png" alt="Ligne 3"/>
+        <p>→ Campus Marthe Gautier : 
+          <span id="ligne3-campus-1">xx min</span> | 
+          <span id="ligne3-campus-2">xx min</span>
+        </p>
+        <p>→ Gare Centrale : 
+          <span id="ligne3-gare-1">xx min</span> | 
+          <span id="ligne3-gare-2">xx min</span>
+        </p>
+      </section>
+
+      <!-- Ligne 4 -->
+      <section class="ligne-card" id="ligne4">
+        <h2>Ligne 4</h2>
+        <img src="img/ligne4.png" alt="Ligne 4"/>
+        <p>→ Gare de l'Est : 
+          <span id="ligne4-est-1">xx min</span> | 
+          <span id="ligne4-est-2">xx min</span>
+        </p>
+        <p>→ Gare Centrale : 
+          <span id="ligne4-gare-1">xx min</span> | 
+          <span id="ligne4-gare-2">xx min</span>
+        </p>
+      </section>
     </main>
   </div>
-  <script src="js/script.js"></script>
+
+  <script src="script.js"></script>
 </body>
 </html>
