@@ -22,7 +22,7 @@ const frequencies = {
 };
 
 function getPeriod(hour) {
-  if (hour >= 6 && hour < 9 || hour >= 16 && hour < 19) return "pointe";
+  if ((hour >= 6 && hour < 9) || (hour >= 16 && hour < 19)) return "pointe";
   if (hour >= 20 || hour < 6) return "soirée";
   return "creuse";
 }
@@ -30,31 +30,22 @@ function getPeriod(hour) {
 function getDayType() {
   const now = new Date();
   const day = now.getDay();
-  const isVacation = false; // peut être mis à jour dynamiquement plus tard
-  if (isVacation) return "vacances";
+  const isVacation = false; // à automatiser si tu veux
+  if (isVacation) return "vacances"; // à gérer si besoin
   if (day === 6) return "saturday";
   if (day === 0) return "sunday";
   return "weekday";
 }
 
+function getNextDepartures(frequency) {
+  const now = new Date();
+  const totalMinutes = now.getHours() * 60 + now.getMinutes();
+  const nextBus = frequency - (totalMinutes % frequency);
+  const secondBus = nextBus + frequency;
+  return [nextBus, secondBus];
+}
+
 function updateTimes() {
   const now = new Date();
   const hour = now.getHours();
-  const dayType = getDayType();
-  const period = getPeriod(hour);
-
-  document.querySelectorAll(".time").forEach(span => {
-    const line = span.dataset.line;
-    const freq = frequencies[line][dayType][period];
-    if (freq) {
-      const wait1 = Math.floor(Math.random() * freq);
-      const wait2 = wait1 + freq;
-      span.textContent = `${wait1} min | ${wait2} min`;
-    } else {
-      span.textContent = "Pas de service";
-    }
-  });
-}
-
-setInterval(updateTimes, 10000); // met à jour toutes les 10s
-updateTimes();
+  const dayType
