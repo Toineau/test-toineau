@@ -1,66 +1,50 @@
 body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f7f7f7;
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-.loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.loader img {
-  width: 120px;
-}
-
-.hidden {
-  display: none;
+  padding: 0;
 }
 
 header {
-  background-color: #222;
+  background-color: #004080;
   color: white;
-  padding: 20px;
   text-align: center;
+  padding: 1em;
 }
 
 .main-logo {
   height: 50px;
-  margin-bottom: 10px;
+  vertical-align: middle;
 }
 
-h1 {
-  margin: 0;
-  font-size: 1.8em;
-}
-
-main {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.ligne-card {
+.line {
   background: white;
-  border-left: 10px solid #007bff;
-  padding: 15px 20px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  border-radius: 6px;
+  border-radius: 8px;
+  margin: 1em auto;
+  padding: 1em;
+  width: 90%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.line-logo {
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+h2 {
+  margin: 0.5em 0;
+  color: #333;
+}
+
+.stop {
+  margin: 0.5em 0;
   font-size: 1.1em;
 }
 
-.ligne-card:nth-child(2) { border-color: #8e44ad; }
-.ligne-card:nth-child(3) { border-color: #f39c12; }
-.ligne-card:nth-child(4) { border-color: #00b894; }
-
-.ligne-card h2 {
-  margin: 0 0 10px;
-}
-
-.ligne-card p {
-  margin: 2px 0;
+footer {
+  text-align: center;
+  padding: 1em;
+  font-size: 0.8em;
+  color: #666;
 }
