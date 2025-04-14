@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ligne 1 – Néo Mobilité</title>
+  <link rel="stylesheet" href="css/line-info.css" />
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img src="img/logo.png" alt="Retour à l'accueil" class="logo" />
+    </a>
+    <h1>Ligne 4 – Gare Centrale ⇄ Gare de l'Est</h1>
+  </header>
+
+  <main>
+<img src="https://transport-manager.net/assets/img/lignes/N1_L4_trans1.png" alt="Map Line 4" width=100% height=100% />
+
+    <h2>
+      Horaires en temps réel
+      <div class="container"></div>
+    </h2>
+    <style>
+      .container {
+        --uib-size: 30px;
+        --uib-color: orange;
+        --uib-speed: 2s;
+        position: relative;
+        height: var(--uib-size);
+        width: var(--uib-size);
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      .container::before,
+      .container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        background-color: var(--uib-color);
+        animation: pulse var(--uib-speed) linear infinite;
+        transform: scale(0);
+        opacity: 0;
+        transition: background-color 0.3s ease;
+      }
+
+      .container::after {
+        animation-delay: calc(var(--uib-speed) / -2);
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+    </style>
+
+    <p>→ Gare de l'Est : <span class="time" data-line="L1" data-stop="Gare de l'Est">--</span></p>
+    <p>→ Gare Centrale : <span class="time" data-line="L1" data-stop="Gare Centrale">--</span></p>
+
+    <h2>Fréquences de passage</h2>
+    <ul>
+      <li>Heures creuses : 28 min</li>
+      <li>Heures de pointe : 19 min</li>
+      <li>Soirée : Pas de service</li>
+      <li>Dimanche : Pas de service</li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>© 2025 – Néo Mobilité</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
