@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ligne 2 – Néo Mobilité</title>
+  <link rel="stylesheet" href="css/line-info.css" />
+</head>
+<body>
+  <header>
+    <a href="index.html">
+      <img src="img/logo.png" alt="Retour à l'accueil" class="logo" />
+    </a>
+    <h1>Ligne 2 – Gare Centrale ⇄ Aéroport</h1>
+  </header>
+
+  <main>
+    <img src="img/L2.png" alt="Logo Ligne 2" class="line-logo" />
+    <img src="https://transport-manager.net/assets/img/lignes/N1_L2_trans1.png" class="line-map" />
+
+    <h2>
+      Horaires en temps réel
+      <div class="container"></div>
+    </h2>
+    <style>
+      .container {
+        --uib-size: 30px;
+        --uib-color: orange;
+        --uib-speed: 2s;
+        position: relative;
+        height: var(--uib-size);
+        width: var(--uib-size);
+        display: inline-block;
+        margin-left: 10px;
+      }
+
+      .container::before,
+      .container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        background-color: var(--uib-color);
+        animation: pulse var(--uib-speed) linear infinite;
+        transform: scale(0);
+        opacity: 0;
+        transition: background-color 0.3s ease;
+      }
+
+      .container::after {
+        animation-delay: calc(var(--uib-speed) / -2);
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+    </style>
+
+    <p>→ Aéroport : <span class="time" data-line="L2" data-stop="Aéroport">--</span></p>
+    <p>→ Gare Centrale : <span class="time" data-line="L2" data-stop="Gare Centrale">--</span></p>
+
+    <h2>Fréquences de passage</h2>
+    <ul>
+      <li>Heures creuses : 16 min</li>
+      <li>Heures de pointe : 11 min</li>
+      <li>Soirée : 40 min</li>
+      <li>Dimanche creuses : 40 min</li>
+      <li>Dimanche pointes : 27 min</li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>© 2025 – Néo Mobilité</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
