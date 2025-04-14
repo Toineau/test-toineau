@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const freq1 = getFrequency(id);
     const freq2 = getFrequency(id); // Peut être personnalisé si sens différent
     container.innerHTML = `
-      <h2>Ligne ${id}.png</h2>
+      <h2>L${id}.png</h2>
       <p>|</p>
       <p>|-->${nom[0]}: ${freq1} min | ${freq2} min</p>
       <p>|</p>
