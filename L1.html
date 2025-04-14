@@ -8,13 +8,18 @@
 <body>
   <header>
     <a href="index.html">
-      <img src="img/logo.png" alt="Retour accueil" class="logo">
+      <img src="img/logo.png" alt="Retour à l'accueil" class="logo" />
     </a>
     <h1>Ligne 1 – Gare Centrale ⇄ Campus Alan Turing</h1>
   </header>
 
   <main>
-    <img src="img/L1.png" alt="Logo Ligne 1" class="line-logo">
+    <img src="img/L1.png" alt="Logo Ligne 1" class="line-logo" />
+
+    <h2>Horaires en temps réel</h2>
+    <p>→ Campus Alan Turing : <span class="time" data-line="L1" data-stop="Campus Alan Turing">--</span></p>
+    <p>→ Gare Centrale : <span class="time" data-line="L1" data-stop="Gare Centrale">--</span></p>
+
     <h2>Fréquences de passage</h2>
     <ul>
       <li>Heures creuses : 24 min</li>
@@ -22,11 +27,13 @@
       <li>Soirée (samedi uniquement) : 48 min</li>
       <li>Dimanche : 48 min</li>
     </ul>
-
   </main>
 
   <footer>
     <p>© 2025 – Néo Mobilité</p>
   </footer>
+
+  <!-- Utilisation du script global -->
+  <script src="js/script.js"></script>
 </body>
 </html>
