@@ -20,48 +20,49 @@
       Horaires en temps réel
       <div class="container"></div>
     </h2>
-  <style>
-    .container {
-    --uib-size: 45px;
-    --uib-color: black;
-    --uib-speed: 2s;
-    position: relative;
-    height: var(--uib-size);
-    width: var(--uib-size);
-  }
+    <style>
+      .container {
+        --uib-size: 45px;
+        --uib-color: black;
+        --uib-speed: 2s;
+        position: relative;
+        height: var(--uib-size);
+        width: var(--uib-size);
+        display: inline-block;
+        margin-left: 10px;
+      }
 
-  .container::before,
-  .container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    border-radius: 50%;
-    background-color: var(--uib-color);
-    animation: pulse var(--uib-speed) linear infinite;
-    transform: scale(0);
-    opacity: 0;
-    transition: background-color 0.3s ease;
-  }
+      .container::before,
+      .container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+        background-color: var(--uib-color);
+        animation: pulse var(--uib-speed) linear infinite;
+        transform: scale(0);
+        opacity: 0;
+        transition: background-color 0.3s ease;
+      }
 
-  .container::after {
-    animation-delay: calc(var(--uib-speed) / -2);
-  }
+      .container::after {
+        animation-delay: calc(var(--uib-speed) / -2);
+      }
 
-  @keyframes pulse {
-    0% {
-      transform: scale(0);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 0;
-    }
-  }
-</style>
-
+      @keyframes pulse {
+        0% {
+          transform: scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0;
+        }
+      }
+    </style>
 
     <p>→ Campus Alan Turing : <span class="time" data-line="L1" data-stop="Campus Alan Turing">--</span></p>
     <p>→ Gare Centrale : <span class="time" data-line="L1" data-stop="Gare Centrale">--</span></p>
