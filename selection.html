@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Sélection Ligne</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f7f7f7;
+      padding: 2em;
+      text-align: center;
+    }
+    select, button {
+      font-size: 1.2em;
+      padding: 0.5em;
+      margin: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚌 Sélection de la ligne, destination et station</h1>
+
+  <form id="selection-form">
+    <label for="ligne">Ligne :</label>
+    <select id="ligne" required>
+      <option value="L1">Ligne 1</option>
+      <option value="L2">Ligne 2</option>
+      <option value="L3">Ligne 3</option>
+      <option value="L4">Ligne 4</option>
+    </select>
+
+    <label for="destination">Destination :</label>
+    <select id="destination" required>
+      <option value="Campus Alan Turing">Campus Alan Turing</option>
+      <option value="Gare Centrale">Gare Centrale</option>
+      <option value="Aéroport">Aéroport</option>
+      <option value="Campus Marthe Gautier">Campus Marthe Gautier</option>
+      <option value="Gare de l'Est">Gare de l'Est</option>
+    </select>
+
+    <label for="station">N° de la station actuelle :</label>
+    <input type="number" id="station" min="1" value="1" required>
+
+    <br><br>
+    <button type="submit">Lancer l'affichage</button>
+  </form>
+
+  <script>
+    document.getElementById("selection-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const ligne = document.getElementById("ligne").value;
+      const dest = document.getElementById("destination").value;
+      const station = document.getElementById("station").value;
+      window.location.href = `affichage.html?ligne=${ligne}&dest=${encodeURIComponent(dest)}&station=${station}`;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Affichage Trajet en Bus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #001f3f;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #003366;
+      padding: 1em 2em;
+    }
+
+    #direction {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    #heure {
+      font-size: 1.2em;
+    }
+
+    main {
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding: 2em;
+      height: calc(100vh - 80px);
+      box-sizing: border-box;
+    }
+
+    .column {
+      flex: 1;
+      margin: 0 1em;
+    }
+
+    .stops {
+      background: #004080;
+      border-radius: 10px;
+      padding: 1em;
+    }
+
+    .stops h2, .eta h2 {
+      font-size: 1.3em;
+      margin-bottom: 1em;
+      text-align: center;
+    }
+
+    .stops ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .stops li {
+      padding: 0.5em 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 1.1em;
+    }
+
+    .eta {
+      background: #005599;
+      border-radius: 10px;
+      padding: 1em;
+      text-align: center;
+    }
+
+    .eta span {
+      font-size: 2em;
+      font-weight: bold;
+      display: block;
+      margin-top: 0.5em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div id="direction">Direction : ...</div>
+    <div id="heure">--:--</div>
+  </header>
+
+  <main>
+    <div class="column stops">
+      <h2>Prochains arrêts</h2>
+      <ul id="liste-stations"></ul>
+    </div>
+
+    <div class="column eta">
+      <h2>🕑 Temps estimé<br>jusqu’au terminus</h2>
+      <span id="temps-restant">-- min</span>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const ligne = params.get("ligne") || "L1";
+    const dest = params.get("dest") || "Gare Centrale";
+    let station = parseInt(params.get("station")) || 1;
+
+    const stations = {
+      L1: [
+        "Campus Alan Turing", "Rue Bleue", "Pont Sud", "Halles", "Place Verte",
+        "La Gravière", "Saint-Pierre", "Bibliothèque", "Hôpital Nord",
+        "Parc Est", "Université", "Mont du Vent", "Saint-Roch",
+        "Jean Moulin", "Croix du Sud", "Station 16", "Station 17",
+        "Station 18", "Station 19", "Gare Centrale"
+      ]
+    };
+
+    const durees = { L1: 24 }; // min
+
+    const direction = document.getElementById("direction");
+    const heure = document.getElementById("heure");
+    const liste = document.getElementById("liste-stations");
+    const tempsRestant = document.getElementById("temps-restant");
+
+    direction.textContent = `Direction : ${dest}`;
+
+    function updateHeure() {
+      const now = new Date();
+      const h = now.getHours().toString().padStart(2, "0");
+      const m = now.getMinutes().toString().padStart(2, "0");
+      heure.textContent = `${h}h${m}`;
+    }
+
+    function updateAffichage() {
+      const ligneStations = stations[ligne] || [];
+      const stationActuelle = station;
+      const stationsRestantes = ligneStations.slice(stationActuelle);
+
+      // Affiche les prochains arrêts
+      liste.innerHTML = "";
+      stationsRestantes.slice(0, 5).forEach(nom => {
+        const li = document.createElement("li");
+        li.textContent = nom;
+        liste.appendChild(li);
+      });
+
+      // Temps estimé jusqu'au terminus
+      const totalStations = ligneStations.length;
+      const ratioRestant = (totalStations - stationActuelle) / totalStations;
+      const base = durees[ligne] || 20;
+      const estimation = Math.round(base * ratioRestant) + Math.floor(Math.random() * 2);
+      tempsRestant.textContent = `${estimation} min`;
+    }
+
+    function avancerStation() {
+      const total = stations[ligne]?.length || 20;
+      if (station < total - 1) {
+        station++;
+        updateAffichage();
+      }
+    }
+
+    updateHeure();
+    updateAffichage();
+    setInterval(updateHeure, 30000);
+    setInterval(avancerStation, 15000); // change de station toutes les 15s
+  </script>
+
+</body>
+</html>

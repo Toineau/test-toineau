@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - NéoMobilité</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+      background: #f5f5f5;
+      text-align: center;
+    }
+
+    input, select, textarea, button {
+      font-size: 1em;
+      padding: 0.5em;
+      margin: 0.5em;
+    }
+
+    textarea {
+      width: 80%;
+      height: 100px;
+    }
+
+    #admin-panel {
+      display: none;
+      margin-top: 2em;
+    }
+
+    .logo-ligne {
+      height: 30px;
+      vertical-align: middle;
+      margin-left: 0.5em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Accès Page Admin</h1>
+
+  <div id="login">
+    <input type="password" id="pass" placeholder="Mot de passe" />
+    <button onclick="verifier()">Connexion</button>
+  </div>
+
+  <div id="admin-panel">
+    <label for="ligne">Ligne :</label>
+    <select id="ligne" onchange="chargerPerturbation()">
+      <option value="L1">Ligne 1</option>
+      <option value="L2">Ligne 2</option>
+      <option value="L3">Ligne 3</option>
+      <option value="L4">Ligne 4</option>
+    </select>
+    <img id="logo-ligne" src="img/L1.png" class="logo-ligne" alt="logo ligne" />
+
+    <br>
+    <textarea id="texte" placeholder="Entrez une perturbation..."></textarea><br>
+
+    <label for="type">Type :</label>
+    <select id="type">
+      <option value="">Aucun</option>
+      <option value="info">Information</option>
+      <option value="travaux">Travaux</option>
+      <option value="alerte">Alerte</option>
+    </select><br>
+
+    <button onclick="enregistrer()">Enregistrer</button>
+  </div>
+
+  <script>
+    const hashAttendu = "f02474bb0e4f62d74cdbade570204651"; // hash de NeoSecure2025!
+    let perturbations = {};
+
+    function verifier() {
+      const pass = document.getElementById("pass").value;
+      const hash = CryptoJS.MD5(pass).toString();
+      if (hash === hashAttendu) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("admin-panel").style.display = "block";
+        chargerFichier();
+      } else {
+        alert("Mot de passe incorrect.");
+      }
+    }
+
+    function chargerFichier() {
+      fetch("perturbations.json")
+        .then(r => r.json())
+        .then(data => {
+          perturbations = data;
+          chargerPerturbation();
+        });
+    }
+
+    function chargerPerturbation() {
+      const ligne = document.getElementById("ligne").value;
+      document.getElementById("logo-ligne").src = `img/${ligne}.png`;
+      document.getElementById("texte").value = perturbations[ligne]?.message || "";
+      document.getElementById("type").value = perturbations[ligne]?.type || "";
+    }
+
+    function enregistrer() {
+      const ligne = document.getElementById("ligne").value;
+      const texte = document.getElementById("texte").value;
+      const type = document.getElementById("type").value;
+
+      perturbations[ligne] = {
+        message: texte,
+        type: type
+      };
+
+      fetch("update_perturbations.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(perturbations)
+      })
+      .then(() => alert("Perturbation enregistrée."));
+    }
+
+    document.getElementById("ligne").addEventListener("change", chargerPerturbation);
+  </script>
+</body>
+</html>

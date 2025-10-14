@@ -1,0 +1,6 @@
+{
+  "L1": { "passagers": 30, "places": 50 },
+  "L2": { "passagers": 20, "places": 40 },
+  "L3": { "passagers": 10, "places": 30 },
+  "L4": { "passagers": 5, "places": 30 }
+}
