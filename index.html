@@ -1,59 +1,142 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Horaires Bus – Néo Mobilité</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horaires – NeoMobilité</title>
   <link rel="stylesheet" href="css/style.css" />
+  <script defer src="js/script.js"></script>
 </head>
 <body>
+  <div id="loader">
+  <img src="img/loading.gif" alt="Chargement..." />
+</div>
+<div id="main-content" style="display: none;">
+
+  
   <header>
-    <img src="img/logo.png" alt="Logo" class="main-logo" />
-    <h1>Horaires en temps réel</h1>
+    <a href="admin.html" class="btn-admin" title="Paramètres">⚙️</a>
+       <div class= "main-logo">
+    <a href="https://seal.transport-manager.net/Toineau">
+      <img src="img/logo.png" alt="Retour Seal" class="main-logo"></a></div>
+    <h1>Horaires du Réseau - NéoMobilité</h1>
   </header>
 
-  <main id="bus-lines">
-    <section class="line" id="L1">
-      <a href="L1.html">
-        <img src="img/L1.png" alt="Ligne 1" class="line-logo clickable" />
-      </a>
-      <h2>Ligne 1</h2>
-      <div class="stop">➤ Campus Alan Turing : <span class="time" data-line="L1" data-stop="Campus Alan Turing">--</span></div>
-      <div class="stop">➤ Gare Centrale : <span class="time" data-line="L1" data-stop="Gare Centrale">--</span></div>
-    </section>
+  <main class="line-container">
 
-    <section class="line" id="L2">
-      <a href="L2.html">
-        <img src="img/L2.png" alt="Ligne 2" class="line-logo clickable" />
-      </a>
-      <h2>Ligne 2</h2>
-      <div class="stop">➤ Aéroport : <span class="time" data-line="L2" data-stop="Aéroport">--</span></div>
-      <div class="stop">➤ Gare Centrale : <span class="time" data-line="L2" data-stop="Gare Centrale">--</span></div>
-    </section>
+<div id="alert-perturb" style="display:none; background:#fff; color:black; padding:1em; margin:1em auto; border-radius:8px; max-width:800px;"></div>
 
-    <section class="line" id="L3">
-      <a href="L3.html">
-        <img src="img/L3.png" alt="Ligne 3" class="line-logo clickable" />
-      </a>
-      <h2>Ligne 3</h2>
-      <div class="stop">➤ Campus Marthe Gautier : <span class="time" data-line="L3" data-stop="Campus Marthe Gautier">--</span></div>
-      <div class="stop">➤ Gare Centrale : <span class="time" data-line="L3" data-stop="Gare Centrale">--</span></div>
-    </section>
+<style>
+  .blink {
+    animation: blink 1s infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>
 
-    <section class="line" id="L4">
-      <a href="L4.html">
-        <img src="img/L4.png" alt="Ligne 4" class="line-logo clickable" />
-      </a>
-      <h2>Ligne 4</h2>
-      <div class="stop">➤ Gare de l’Est : <span class="time" data-line="L4" data-stop="Gare de l’Est">--</span></div>
-      <div class="stop">➤ Gare Centrale : <span class="time" data-line="L4" data-stop="Gare Centrale">--</span></div>
-    </section>
+<script>
+  const icons = {
+    alerte: '❌',
+    travaux: '🚧',
+    info: '⚠️'
+  };
+
+  fetch("perturbations.json")
+    .then(r => r.json())
+    .then(data => {
+      const actives = Object.entries(data)
+        .filter(([_, val]) => val.message && val.message.trim() !== "")
+        .map(([key, val]) => {
+          const emoji = val.type && icons[val.type] ? `<span class="blink">${icons[val.type]}</span> ` : "";
+          return `<p><img src="img/${key}.png" alt="${key}" style="height: 32px; vertical-align: middle; margin-right: 0.5em;">${emoji}${val.message}</p>`;
+        });
+
+      if (actives.length) {
+        const div = document.getElementById("alert-perturb");
+        div.innerHTML = "<strong> Perturbations :</strong><br>" + actives.join("");
+        div.style.display = "block";
+      }
+    });
+</script>
+
+<div class="line-block line-1">
+  <a href="L1.html"><img src="img/L1.png" class="line-logo" alt="L1" /></a>
+  <div class="line-info">
+    <div class="line-row">
+      <span class="line-destination">Campus Alan Turing</span>
+      <span class="line-destination">Gare Centrale</span>
+    </div>
+    <div class="line-row">
+      <span class="time" data-line="L1" data-stop="Campus Alan Turing">...</span>
+      <span class="time" data-line="L1" data-stop="Gare Centrale">...</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="line-block line-2">
+  <a href="L2.html"><img src="img/L2.png" class="line-logo" alt="L2" /></a>
+  <div class="line-info">
+    <div class="line-row">
+      <span class="line-destination">Aéroport</span>
+      <span class="line-destination">Gare Centrale</span>
+    </div>
+    <div class="line-row">
+      <span class="time" data-line="L2" data-stop="Aéroport">...</span>
+      <span class="time" data-line="L2" data-stop="Gare Centrale">...</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="line-block line-3">
+  <a href="L3.html"><img src="img/L3.png" class="line-logo" alt="L3" /></a>
+  <div class="line-info">
+    <div class="line-row">
+      <span class="line-destination">Campus Marthe Gauthier</span>
+      <span class="line-destination">Gare Centrale</span>
+    </div>
+    <div class="line-row">
+      <span class="time" data-line="L3" data-stop="Campus Marthe Gauthier">...</span>
+      <span class="time" data-line="L3" data-stop="Gare Centrale">...</span>
+    </div>
+  </div>
+</div>
+
+
+<div class="line-block line-4">
+  <a href="L4.html"><img src="img/L4.png" class="line-logo" alt="L4" /></a>
+  <div class="line-info">
+    <div class="line-row">
+      <span class="line-destination">Gare de l'Est</span>
+      <span class="line-destination">Gare Centrale</span>
+    </div>
+    <div class="line-row">
+      <span class="time" data-line="L4" data-stop="Gare de l'Est">...</span>
+      <span class="time" data-line="L4" data-stop="Gare Centrale">...</span>
+    </div>
+  </div>
+</div>
+
   </main>
+  
+  </div>
+<script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }, 2000);
+  });
+</script>
 
-  <footer>
-    <p>© 2025 – Néo Mobilité</p>
+  
+       <footer>
+    <p>© 2025 – NéoMobilité</p>
   </footer>
-
-  <script src="js/script.js"></script>
+  
 </body>
 </html>
