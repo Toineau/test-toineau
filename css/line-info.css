@@ -1,194 +1,47 @@
-/* === Structure générale === */
 body {
   font-family: "Segoe UI", sans-serif;
+  background: #f5f5f5;
   margin: 0;
   padding: 0;
-  background-color: #f4f7fb;
-  color: #222;
 }
 
-/* === En-tête === */
 header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: #004080;
-  color: #fff;
-  padding: 0.8em 1em;
-  position: relative;
-}
-
-header h1 {
-  font-size: 1.3em;
-  margin: 0;
-  text-align: center;
-}
-
-header .btn-admin {
-  position: absolute;
-  right: 1em;
-  font-size: 1.3em;
-  text-decoration: none;
   color: white;
-}
-
-header .main-logo img {
-  height: 50px;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-
-.logo-ligne {
-  height: 50px;
-  margin: 0 10px;
-}
-
-/* === Barre de navigation === */
-.ligne-bar {
-  display: flex;
-  justify-content: center;
-  background-color: #e8eef5;
-  padding: 0.5em;
-  gap: 15px;
-  border-bottom: 1px solid #ccc;
-}
-
-.ligne-bar a img {
-  height: 40px;
-  transition: transform 0.2s ease;
-}
-
-.ligne-bar a img:hover {
-  transform: scale(1.1);
-}
-
-/* === Plan de ligne === */
-.line-map img {
-  display: block;
-  width: 100%;
-  max-width: 800px;
-  margin: 1em auto;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-}
-
-/* === Bloc de temps réel === */
-.line-block {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  margin: 1em auto;
+  text-align: center;
   padding: 1em;
+}
+
+.line-logo {
+  height: 40px;
+  vertical-align: middle;
+  margin-bottom: 0.5em;
+}
+
+.temps {
+  margin: 1em auto;
   width: 90%;
   max-width: 600px;
-  text-align: center;
+  background: white;
+  border-radius: 8px;
+  padding: 1em;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
-.line-row {
-  display: flex;
-  justify-content: space-around;
-  margin: 0.5em 0;
-}
-
-.line-destination {
-  font-weight: bold;
-  color: #004080;
-}
-
-.time {
+.stop {
+  margin-bottom: 1em;
   font-size: 1.2em;
-  font-weight: bold;
 }
 
-/* === Affluence === */
 .affluence-box {
   display: flex;
-  align-items: center;
   justify-content: center;
-  background: #fff;
-  border-radius: 8px;
+  align-items: center;
+  gap: 1em;
   margin: 1em auto;
-  padding: 0.7em;
-  width: 90%;
-  max-width: 500px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-}
-
-.affluence-box img {
-  height: 28px;
-  margin-right: 0.5em;
-}
-
-#texte-affluence {
-  font-weight: 600;
-}
-
-/* === Section infos de ligne === */
-.infos-ligne {
-  background: #fff;
+  max-width: 400px;
+  background: #eaeaea;
   padding: 1em;
-  margin: 1.5em auto;
-  width: 90%;
-  max-width: 700px;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
-
-.infos-ligne h1 {
-  color: #004080;
-  font-size: 1.2em;
-  border-bottom: 2px solid #004080;
-  padding-bottom: 0.2em;
-}
-
-.infos-ligne ul {
-  list-style: none;
-  padding: 0;
-}
-
-.infos-ligne li {
-  padding: 0.3em 0;
-}
-
-/* === Loader === */
-#loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: white;
-}
-
-#loader img {
-  height: 80px;
-}
-
-/* === Footer === */
-footer {
-  text-align: center;
-  padding: 1em;
-  font-size: 0.8em;
-  color: #666;
-  margin-top: 2em;
-}
-
-/* === Animation clignotante (perturbations) === */
-.blink {
-  animation: blink 1s infinite;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-/* === Responsive === */
-@media (max-width: 768px) {
-  .line-row {
-    flex-direction: column;
-    text-align: center;
-  }
-  header {
-    flex-direction: column;
-    gap: 0.5em;
-  }
+  border-radius: 10px;
+  font-weight: bold;
 }
