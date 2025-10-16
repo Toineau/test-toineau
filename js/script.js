@@ -22,10 +22,10 @@ const frequencies = {
 };
 
 const serviceHours = {
-  L1: { start: 5 * 60 + 45, end: () => 20 * 60 },
-  L2: { start: 5 * 60 + 30, end: () => 24 * 60 + 30 },
-  L3: { start: 5 * 60 + 30, end: () => 24 * 60 + 30 },
-  L4: { start: 6 * 60 + 15, end: () => 19 * 60 + 30 }
+  L1: { start: 5 * 60, end: () => 23 * 60 },
+  L2: { start: 4 * 60 + 30, end: () => 24 * 60 + 30 },
+  L3: { start: 5 * 60, end: () => 24 * 60 + 30 },
+  L4: { start: 5 * 60 + 30, end: () => 22 * 60 + 45 }
 };
 
 function getDayType() {
