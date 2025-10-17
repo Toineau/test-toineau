@@ -1,22 +1,22 @@
 const frequencies = {
   L1: {
-    weekday: { creuse: 24, pointe: 24, soirée: 48 },
-    saturday: { creuse: 24, pointe: 24, soirée: 48 },
+    weekday: { creuse: 24, pointe: 12, soirée: 48 },
+    saturday: { creuse: 24, pointe: 16, soirée: 48 },
     sunday: { creuse: 48, pointe: 24, soirée: null }
   },
   L2: {
-    weekday: { creuse: 13, pointe: 13, soirée: 27 },
-    saturday: { creuse: 20, pointe: 11, soirée: 27 },
-    sunday: { creuse: 40, pointe: 27, soirée: null }
+    weekday: { creuse: 11, pointe: 9, soirée: 27 },
+    saturday: { creuse: 16, pointe: 11, soirée: 20 },
+    sunday: { creuse: 40, pointe: 20, soirée: null }
   },
   L3: {
-    weekday: { creuse: 32, pointe: 21, soirée: 64 },
-    saturday: { creuse: 32, pointe: 32, soirée: 64 },
+    weekday: { creuse: 16, pointe: 11, soirée: 32 },
+    saturday: { creuse: 21, pointe: 16, soirée: 64 },
     sunday: { creuse: 32, pointe: 32, soirée: null }
   },
   L4: {
-    weekday: { creuse: 28, pointe: 19, soirée: null },
-    saturday: { creuse: null, pointe: 19, soirée: null },
+    weekday: { creuse: 28, pointe: 14, soirée: null },
+    saturday: { creuse: null, pointe: 28, soirée: null },
     sunday: { creuse: null, pointe: null, soirée: null }
   }
 };
@@ -38,7 +38,7 @@ function getDayType() {
 
 function getPeriod(hour) {
   if ((hour >= 7 && hour < 10) || (hour >= 17 && hour < 19)) return "pointe";
-  if (hour >= 20 || hour < 6) return "soirée";
+  if (hour >= 20 || hour < 1) return "soirée";
   return "creuse";
 }
 
