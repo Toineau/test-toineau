@@ -2,84 +2,127 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Ligne 1 – Néo Mobilité</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ligne 4 – NeoMobilité</title>
   <link rel="stylesheet" href="css/line-info.css" />
+  <script defer src="js/script.js"></script>
 </head>
 <body>
+
+  <div id="loader">
+  <img src="img/loading.gif" alt="Chargement..." />
+</div>
+<div id="main-content" style="display: none;">
+
   <header>
+    <a href="admin.html" class="btn-admin" title="Paramètres">⚙️</a>
+       <div class= "main-logo">
     <a href="index.html">
-      <img src="img/logo.png" alt="Retour à l'accueil" class="logo" />
-    </a>
-    <h1>Ligne 4 – Gare Centrale ⇄ Gare de l'Est</h1>
+      <img src="img/logo.png" alt="Logo" class="main-logo"></a></div>
+    <img src="img/L4.png" alt="Ligne 4" class="logo-ligne" />
+    <h1>Ligne 4 – Gare de l'Est ↔ Gare Centrale</h1>
   </header>
+  
+    <nav class="ligne-bar">
+  <a href="L1.html"><img src="img/L1.png" alt="L1"></a>
+  <a href="L2.html"><img src="img/L2.png" alt="L2"></a>
+  <a href="L3.html"><img src="img/L3.png" alt="L3"></a>
+</nav>
+		
+    <main class="line-map">
+      <img src="https://transport-manager.net/assets/img/lignes/N2_L4_trans1.png" alt="Plan Ligne 4" style="width:100%;">
+    </div>
+	
+	
 
-  <main>
-<img src="https://transport-manager.net/assets/img/lignes/N1_L4_trans1.png" alt="Map Line 4" width=100% height=100% />
+<div class="line-block line-4">
+  <div class="line-info">
+    <div class="line-row">
+      <span class="line-destination">Gare de l'Est</span>
+      <span class="line-destination">Gare Centrale</span>
+    </div>
+    <div class="line-row">
+      <span class="time" data-line="L3" data-stop="Gare de l'Est">...</span>
+      <span class="time" data-line="L3" data-stop="Gare Centrale">...</span>
+    </div>
+  </div>
+</div>
 
-    <h2>
-      Horaires en temps réel
-      <div class="container"></div>
-    </h2>
-    <style>
-      .container {
-        --uib-size: 30px;
-        --uib-color: orange;
-        --uib-speed: 2s;
-        position: relative;
-        height: var(--uib-size);
-        width: var(--uib-size);
-        display: inline-block;
-        margin-left: 10px;
+	
+	  <div class="line-container">
+	  <div id="alert-perturb" style="display:none; background:#fff; color:black; padding:1em; margin:1em auto; border-radius:8px; max-width:800px;"></div>
+
+<style>
+  .blink {
+    animation: blink 1s infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>
+
+<script>
+  const icons = {
+    alerte: '❌',
+    travaux: '🚧',
+    info: '⚠️'
+  };
+
+  fetch("perturbations.json")
+    .then(r => r.json())
+    .then(data => {
+      const actives = Object.entries(data)
+        .filter(([_, val]) => val.message && val.message.trim() !== "")
+        .map(([key, val]) => {
+          const emoji = val.type && icons[val.type] ? `<span class="blink">${icons[val.type]}</span> ` : "";
+          return `<p><img src="img/${key}.png" alt="${key}" style="height: 24px; vertical-align: middle; margin-right: 0.5em;">${emoji}${val.message}</p>`;
+        });
+
+      if (actives.length) {
+        const div = document.getElementById("alert-perturb");
+        div.innerHTML = "<strong> Perturbations :</strong><br>" + actives.join("");
+        div.style.display = "block";
       }
+    });
+	</script>
+	
+<section id="affluence" class="affluence-box" data-ligne="L4">
+  <img id="icone-affluence" src="img/icons/affluInconnu.png" alt="Icône affluence" style="height: 32px;">
+  <span id="texte-affluence">Affluence inconnue</span>
+</section>
 
-      .container::before,
-      .container::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        border-radius: 50%;
-        background-color: var(--uib-color);
-        animation: pulse var(--uib-speed) linear infinite;
-        transform: scale(0);
-        opacity: 0;
-        transition: background-color 0.3s ease;
-      }
 
-      .container::after {
-        animation-delay: calc(var(--uib-speed) / -2);
-      }
-
-      @keyframes pulse {
-        0% {
-          transform: scale(0);
-          opacity: 1;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 0;
-        }
-      }
-    </style>
-
-    <p>→ Gare de l'Est : <span class="time" data-line="L1" data-stop="Gare de l'Est">--</span></p>
-    <p>→ Gare Centrale : <span class="time" data-line="L1" data-stop="Gare Centrale">--</span></p>
-
-    <h2>Fréquences de passage</h2>
-    <ul>
-      <li>Heures creuses : 28 min</li>
-      <li>Heures de pointe : 19 min</li>
-      <li>Soirée : Pas de service</li>
-      <li>Dimanche : Pas de service</li>
+	  <section class="infos-ligne">
+	  <h1><strong>Infos :</strong></h1>  
+      <p><strong>Longueur :</strong> 6,5 km</p>
+      <p><strong>Temps de trajet :</strong> 28 min</p>
+      <p><strong>Arrêts :</strong> 24</p>
+      <h1><strong>Fréquences* :</strong></h1>  
+	  <ul>
+      <li><strong>Heures creuses :</strong> 28 min</li>
+      <li><strong>Heures de pointe :</strong> 14 min</li>
+	  <li><strong>Samedi pointes :</strong> 28 min</li>
     </ul>
+    </section>
+	</div>
+  
+	<script>
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }, 2000);
+  });
+</script>
+
   </main>
-
-  <footer>
-    <p>© 2025 – Néo Mobilité</p>
+  
+     <footer>
+   <p>* Les informations peuvent ne pas être à jour.</p>
+		 <p>Retrouvez toutes les infos  <a href="https://transport-manager.net/jeu/company.php?id=6990">ICI</a>(compte TM requis)</p>
+    <p>© 2025 – NéoMobilité</p>
   </footer>
-
-  <script src="js/script.js"></script>
+  
 </body>
 </html>
