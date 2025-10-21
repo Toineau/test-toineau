@@ -17,7 +17,7 @@ const frequencies = {
   L4: {
     weekday: { creuse: 28, pointe: 14, soirée: null },
     saturday: { creuse: null, pointe: 28, soirée: null },
-    sunday: { creuse: null, pointe: null, soirée: null }
+    sunday: { creuse: null, pointe: 28, soirée: null }
   }
 };
 
