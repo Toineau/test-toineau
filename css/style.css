@@ -17,6 +17,12 @@ header {
   padding: 1em;
 }
 
+.transparent-header {
+  background: rgba(255, 255, 255, 0.2); /* 20% d’opacité */
+  backdrop-filter: blur(10px);          /* effet de flou */
+  -webkit-backdrop-filter: blur(10px);  /* compatibilité Safari */
+}
+
 header h1 {
   margin: 0;
   font-size: 1.5em;
