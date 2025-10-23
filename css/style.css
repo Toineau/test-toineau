@@ -18,9 +18,17 @@ header {
 }
 
 .transparent-header {
-  background: rgba(255, 255, 255, 0.2); /* 20% d’opacité */
-  backdrop-filter: blur(10px);          /* effet de flou */
-  -webkit-backdrop-filter: blur(10px);  /* compatibilité Safari */
+   position: fixed;      /* reste en haut */
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;  /* aucune couleur */
+  color: white;
+  z-index: 1000;
 }
 
 header h1 {
